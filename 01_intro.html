@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+
+    <form id="form">
+        <input id="text" type="text" placeholder="Enter your name">
+        <p id="message"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("form");
+        const input = document.getElementById("text");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const name = input.value.trim();
+
+            if (name === "") {
+                message.innerText = "Name is required";
+                message.style.color = "red";
+            } 
+            else if (name.length < 3) {
+                message.innerText = "Name must contain at least 3 characters";
+                message.style.color = "orange";
+            } 
+            else {
+                message.innerText = `Welcome, ${name}! Form submitted successfully.`;
+                message.style.color = "green";
+
+                form.reset();
+            }
+        });
+    </script>
+
+</body>
+</html>
