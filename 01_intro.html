@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
+    <title>Validation Form</title>
 </head>
 <body>
 
-    <form id="form">
-        <input id="text" type="text" placeholder="Enter your name">
+    <form id="userForm">
+        <input type="text" id="userInput" placeholder="Enter Username">
         <p id="message"></p>
+
         <button type="submit">Submit</button>
     </form>
 
     <script>
-        const form = document.getElementById("form");
-        const input = document.getElementById("text");
+        const userForm = document.getElementById("userForm");
+        const userInput = document.getElementById("userInput");
         const message = document.getElementById("message");
 
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
+        userForm.addEventListener("submit", function(event) {
+            event.preventDefault();
 
-            const name = input.value.trim();
+            let text = userInput.value.trim();
 
-            if (name === "") {
-                message.innerText = "Name is required";
+            if (text === "") {
+                message.innerText = "Username cannot be empty!";
                 message.style.color = "red";
-            } 
-            else if (name.length < 3) {
-                message.innerText = "Name must contain at least 3 characters";
-                message.style.color = "orange";
-            } 
+            }
+            else if (text.length < 6) {
+                message.innerText = "Username must contain at least 6 characters.";
+                message.style.color = "red";
+            }
             else {
-                message.innerText = `Welcome, ${name}! Form submitted successfully.`;
+                message.innerText = "Form submitted successfully!";
                 message.style.color = "green";
-
-                form.reset();
             }
         });
     </script>
